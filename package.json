@@ -1,0 +1,10 @@
+{
+  "name": "@vcmm/monorepo",
+  "version": "1.0.0",
+  "description": "A boilerplate monorepo with Vue, Curveball and Moleculer",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nicholai Nissen <nicholainissen@gmail.com>",
+  "license": "AGPL-3.0-or-later"
+}

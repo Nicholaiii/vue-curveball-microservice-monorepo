@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"name": "root",
+			"path": "."
+    },
+    {
+      "name": "Common",
+      "path": "packages/common"
+    },
+    {
+      "name": "Frontend",
+      "path": "packages/frontend"
+    }, {
+      "name": "API",
+      "path": "packages/api"
+    }
+	],
+	"settings": {}
+}
