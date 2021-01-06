@@ -1,22 +1,28 @@
-import { Application } from '@curveball/core';
-import accessLog from '@curveball/accesslog';
-import problem from '@curveball/problem';
-import bodyParser from '@curveball/bodyparser';
-import routes from './routes';
+import { Application } from '@curveball/core'
 
-const app = new Application();
+/* Middlewares */
+import accessLog from '@curveball/accesslog'
+import problem from '@curveball/problem'
+import bodyParser from '@curveball/bodyparser'
+import { jsonOnly } from './middleware/json-only'
 
-// The accesslog middleware shows all requests and responses on the cli.
-app.use(accessLog());
+import routes from './routes'
 
-// The problem middleware turns exceptions into application/problem+json error
-// responses.
-app.use(problem());
+const app = new Application()
 
-// The bodyparser middleware is responsible for parsing JSON and url-encoded
-// request bodies, and populate ctx.request.body.
-app.use(bodyParser());
+/* Middlewares */
+/* TODO: Find a better logging solution */
+if (process.env.NODE_ENV === 'development') app.use(accessLog())
 
-app.use(...routes);
+/* Returns application/problem+json for @curveball/http-errors, 500 for any other */
+app.use(problem())
 
-export default app;
+/* This body parser is not very flexible, consider rolling one, if you want to force JSON body */
+app.use(bodyParser())
+
+/* Force JSON only responses */
+app.use(jsonOnly())
+
+app.use(...routes)
+
+export default app
