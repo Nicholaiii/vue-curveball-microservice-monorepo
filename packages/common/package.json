@@ -4,12 +4,21 @@
   "description": "Shared modules",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "author": {
     "name": "Nicholai Nissen",
     "email": "nicholainissen@gmail.com",
     "url": "https://nicholai.dev"
   },
-  "license": "AGPL-3.0-or-later"
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "@typegoose/typegoose": "^7.4.6",
+    "@types/mongoose": "^5.10.3",
+    "mongoose": "5.10.18",
+    "tslib": "^2.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
 }
