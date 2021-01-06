@@ -1,0 +1,37 @@
+{
+  "name": "@vcmm/api",
+  "version": "1.0.0",
+  "description": "REST API Gateway",
+  "main": "dist/index.js",
+  "private": true,
+  "types": "dist/",
+  "scripts": {
+    "prepublishOnly": "tsc",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsnd --respawn src/index.ts"
+  },
+  "author": {
+    "name": "Nicholai Nissen",
+    "email": "nicholainissen@gmail.com",
+    "url": "https://nicholai.dev"
+  },
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "@types/node": "^14.14.20",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "eslint": "^6.7.2",
+    "typescript": "~3.9.3"
+  },
+  "dependencies": {
+    "@curveball/accesslog": "^0.2.0",
+    "@curveball/bodyparser": "^0.4.6",
+    "@curveball/controller": "^0.3.0",
+    "@curveball/core": "^0.15.0",
+    "@curveball/problem": "^0.2.2",
+    "@curveball/router": "^0.2.4",
+    "ts-dotenv": "^0.8.3",
+    "ts-node-dev": "^1.1.1"
+  }
+}
