@@ -1,8 +1,7 @@
-import { getModelForClass, prop } from "@typegoose/typegoose"
+import { Document } from "mongoose"
 
-export class Pet {
-  @prop({ required: true })
-  public name!: string
+interface Pet {
+  name: string
 }
 
-export const PetModel = getModelForClass(Pet)
+export interface PetDocument extends Pet, Document {}

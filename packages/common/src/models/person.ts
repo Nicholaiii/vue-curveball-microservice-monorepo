@@ -1,12 +1,18 @@
-import { getModelForClass, prop, Ref } from "@typegoose/typegoose"
-import { Pet } from "./pet"
+import { Document, model, Schema, Types } from 'mongoose'
+import { PetDocument } from './pet'
 
-export class Person {
-  @prop({ required: true })
-  public name!: string
-
-  @prop({ ref: Pet })
-  public pets!: Ref<Pet>[]
+interface Person {
+  name: string
+  pets: Array<Types.ObjectId>
 }
 
-export const PersonModel = getModelForClass(Person)
+interface PersonDocument extends Person, Document {
+  pets: PetDocument['_id']
+}
+
+const PersonSchema = new Schema<PersonDocument>({
+  name: { type: String, required: true },
+  pets: [String]
+})
+
+export const PersonModel = model<PersonDocument>('Person', PersonSchema)
