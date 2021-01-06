@@ -1,0 +1,15 @@
+{
+  "name": "@vcmm/common",
+  "version": "1.0.0",
+  "description": "Shared modules",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Nicholai Nissen",
+    "email": "nicholainissen@gmail.com",
+    "url": "https://nicholai.dev"
+  },
+  "license": "AGPL-3.0-or-later"
+}
