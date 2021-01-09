@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "A boilerplate monorepo with Vue, Curveball and Moleculer",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "lerna run --parallel dev"
   },
   "author": {
     "name": "Nicholai Nissen",
     "email": "nicholainissen@gmail.com",
     "url": "https://nicholai.dev"
   },
-  "license": "AGPL-3.0-or-later"
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
 }
