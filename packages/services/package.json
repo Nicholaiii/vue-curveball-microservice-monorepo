@@ -39,6 +39,7 @@
     "moleculer": "^0.14.0",
     "moleculer-db": "^0.8.4",
     "moleculer-db-adapter-mongo": "^0.4.7",
+    "moleculer-db-adapter-mongoose": "^0.8.9",
     "moleculer-web": "^0.9.0",
     "nats": "^1.3.2",
     "typescript": "^3.8.3"

@@ -4,6 +4,7 @@ import { existsSync } from 'fs'
 import { sync } from 'mkdirp'
 import { Context, Service, ServiceSchema } from 'moleculer'
 import DbService from 'moleculer-db'
+import MongooseAdapter from 'moleculer-db-adapter-mongoose'
 
 export default class Connection implements Partial<ServiceSchema>, ThisType<Service>{
 
