@@ -1,16 +1,27 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <HelloWorld :msg="abe.name"/>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
+import type { Person } from '../../common/src/structures/person'
 
 export default defineComponent({
   name: 'App',
   components: {
     HelloWorld
+  },
+  setup () {
+    const abe: Person = {
+      name: 'Example Stuff',
+      pets: []
+    }
+
+    return {
+      abe
+    }
   }
 })
 </script>
