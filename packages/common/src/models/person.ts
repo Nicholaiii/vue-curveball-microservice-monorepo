@@ -1,18 +1,17 @@
 import { Document, model, Schema, Types } from 'mongoose'
+import { Person as IPerson } from '../structures/person'
 import { PetDocument } from './pet'
 
-interface Person {
-  name: string
-  pets: Array<Types.ObjectId>
-}
-
-interface PersonDocument extends Person, Document {
-  pets: PetDocument['_id']
+interface PersonDocument extends IPerson, Document {
+  pets: Array<PetDocument['_id']>
 }
 
 const PersonSchema = new Schema<PersonDocument>({
   name: { type: String, required: true },
-  pets: [String]
+  pets: [{
+    type: Types.ObjectId,
+    ref: 'Pet'
+  }]
 })
 
-export const PersonModel = model<PersonDocument>('Person', PersonSchema)
+export const Person = model<PersonDocument>('Person', PersonSchema)

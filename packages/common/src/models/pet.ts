@@ -1,7 +1,10 @@
-import { Document } from "mongoose"
+import { Document, model, Schema } from 'mongoose'
+import { Pet as IPet } from '../structures/pet'
 
-interface Pet {
-  name: string
-}
+export interface PetDocument extends IPet, Document {}
 
-export interface PetDocument extends Pet, Document {}
+const PetSchema = new Schema<PetDocument>({
+  name: String
+})
+
+export const Pet = model<PetDocument>('Pet', PetSchema)
