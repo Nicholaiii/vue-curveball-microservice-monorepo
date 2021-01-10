@@ -115,31 +115,31 @@ spec:
 
 ---
 #########################################################
-# Products service
+# Persons service
 #########################################################
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: products
+  name: persons
 spec:
   selector:
     matchLabels:
-      app: products
+      app: persons
   replicas: 2
   template:
     metadata:
       labels:
-        app: products
+        app: persons
     spec:
       containers:
-      - name: products
+      - name: persons
         image: my-project
         envFrom:
         - configMapRef:
             name: common-env
         env:
           - name: SERVICES
-            value: products
+            value: persons
 
 ---
 #########################################################

@@ -67,7 +67,7 @@ const brokerConfig: BrokerOptions = {
     type: 'Redis',
     options: {
       redis: {
-        host: '172.31.176.1',
+        host: '172.29.16.1',
         port: 6379,
       },
     },

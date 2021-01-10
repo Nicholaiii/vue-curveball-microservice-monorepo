@@ -5,6 +5,7 @@ import { sync } from 'mkdirp'
 import { Context, Service, ServiceSchema } from 'moleculer'
 import DbService from 'moleculer-db'
 import MongooseAdapter from 'moleculer-db-adapter-mongoose'
+import { Model } from 'mongoose'
 
 export default class Connection implements Partial<ServiceSchema>, ThisType<Service>{
 
@@ -12,11 +13,13 @@ export default class Connection implements Partial<ServiceSchema>, ThisType<Serv
 	private collection: string
 	private schema: Partial<ServiceSchema> & ThisType<Service>
 
-	public constructor(public collectionName: string) {
-		this.collection = collectionName
+	public constructor(public model: Model<any>) {
+		this.collection = model.modelName
 		this.cacheCleanEventName = `cache.clean.${this.collection}`
 		this.schema = {
-			mixins: [DbService],
+      mixins: [DbService],
+      schema: model.schema,
+      modelName: model.modelName,
 			events: {
 				/**
 				 * Subscribe to the cache clean event. If it's triggered
@@ -38,7 +41,7 @@ export default class Connection implements Partial<ServiceSchema>, ThisType<Serv
 				 * @param {Context} ctx
 				 */
 				entityChanged: async (type: string, json: any, ctx: Context) => {
-					await  ctx.broadcast(this.cacheCleanEventName)
+					await ctx.broadcast(this.cacheCleanEventName)
 				},
 			},
 			async started() {
@@ -57,12 +60,15 @@ export default class Connection implements Partial<ServiceSchema>, ThisType<Serv
 	}
 
 	public start(){
-		if (true || process.env.MONGO_URI) {
+		if (process.env.MONGO_URI) {
 			// Mongo adapter
-			// eslint-disable-next-line @typescript-eslint/no-var-requires
-			const MongoAdapter = require('moleculer-db-adapter-mongo')
-			this.schema.adapter = new MongoAdapter('mongodb://172.31.176.1/test')
 			this.schema.collection = this.collection
+			this.schema.adapter = new MongooseAdapter(process.env.MONGO_URI, {
+				useUnifiedTopology: true,
+				useCreateIndex: true,
+				useNewUrlParser: true,
+				autoIndex: true
+			})
 		} else if (process.env.TEST) {
 			// NeDB memory adapter for testing
 			// @ts-ignore

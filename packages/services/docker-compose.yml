@@ -33,13 +33,13 @@ services:
     networks:
       - internal
 
-  products:
+  persons:
     build:
       context: .
     image: my-project
     env_file: docker-compose.env
     environment:
-      SERVICES: products
+      SERVICES: persons
     depends_on:
       - mongo
       - nats
